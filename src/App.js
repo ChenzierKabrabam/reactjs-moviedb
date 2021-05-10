@@ -2,11 +2,15 @@ import {
   createMuiTheme,
   MuiThemeProvider,
   responsiveFontSizes,
+  CssBaseline,
 } from '@material-ui/core'
 import Home from './pages/Home'
 
 let theme = createMuiTheme({
   palette: {
+    background: {
+      default: '#263238',
+    },
     primary: {
       light: '#4f5b62', // font - white
       main: '#263238', // font - white
@@ -28,6 +32,7 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Home />
+      <CssBaseline />
     </MuiThemeProvider>
   )
 }
