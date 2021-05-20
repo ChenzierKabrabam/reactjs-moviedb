@@ -6,7 +6,10 @@ function Home() {
   return (
     <>
       <Header />
-      <Content />
+      <Content title='trending' />
+      <Content title='upcoming' />
+      <Content title='popular' />
+      <Content title='top rated' />
     </>
   )
 }
