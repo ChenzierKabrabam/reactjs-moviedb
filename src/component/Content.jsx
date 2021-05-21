@@ -1,6 +1,5 @@
 import { makeStyles, fade, Typography, Paper, Grid } from '@material-ui/core'
-import React from 'react'
-import poster from '../assets/image/The_Avengers_(2012_film)_poster.jpg'
+import React, { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,62 +28,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const image = [
-  {
-    image: poster,
-    title: 'Moviejdjdjfjdfjhefrgrghdh',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-  {
-    image: poster,
-    title: 'Movie',
-  },
-]
-
 function Content(props) {
   const classes = useStyles()
+  const [movies, setMovies] = React.useState([])
+  let posterPath = 'https://image.tmdb.org/t/p/w500/'
+
+  useState(() => {
+    const callAPI = async () => {
+      await fetch(props.baseURL)
+        .then((response) => response.json())
+        .then((result) => setMovies(result.results))
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+    callAPI()
+  }, [props.baseURL])
+
+  console.log('list', movies)
+
   return (
     <div className={classes.root}>
       <Typography className={classes.heading} variant='h5'>
         {props.title}
       </Typography>
       <div className={classes.gridList}>
-        {image.map((img) => (
-          <Paper className={classes.gridContainer} key={img.title}>
+        {movies.map((movie) => (
+          <Paper className={classes.gridContainer} key={movie.id}>
             <Grid container warp='nowrap'>
               <Grid item>
-                <img src={img.image} alt={img.title} width='160px' />
+                <img
+                  src={posterPath + movie.poster_path}
+                  alt={
+                    movie.title ||
+                    movie.original_title ||
+                    movie.original_name ||
+                    movie.name
+                  }
+                  width='160px'
+                />
               </Grid>
               <Grid
                 item
@@ -93,8 +75,14 @@ function Content(props) {
                   padding: '1px, 8px',
                 }}
               >
-                <Typography noWrap style={{ fontWeight: '600' }}>
-                  {img.title}
+                <Typography
+                  noWrap
+                  style={{ fontWeight: '600', textAlign: 'center' }}
+                >
+                  {movie.title ||
+                    movie.original_title ||
+                    movie.original_name ||
+                    movie.name}
                 </Typography>
               </Grid>
             </Grid>
