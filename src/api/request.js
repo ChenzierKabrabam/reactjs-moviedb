@@ -1,4 +1,4 @@
-const API_KEY = process.env.REACT_APP_API_KEY
+const API_KEY = '82abc6eb9d21ecd75d5da3e9de9ca852'
 
 export const endURL = {
   trending: `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US&page=1`,
