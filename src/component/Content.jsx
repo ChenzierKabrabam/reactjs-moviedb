@@ -1,30 +1,37 @@
-import { makeStyles, fade, Typography, Paper, Grid } from '@material-ui/core'
+import { makeStyles, fade, Typography, Paper } from '@material-ui/core'
 import React, { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '98%',
-    padding: theme.spacing(2),
+    width: '95%',
     margin: '16px auto',
-    alignItems: 'center',
+    padding: theme.spacing(1, 1.6, 1, 1),
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.primary.light,
   },
   heading: {
-    color: fade(theme.palette.common.white, 0.7),
+    width: '100%',
+    padding: theme.spacing(1),
+    color: fade(theme.palette.common.white, 0.8),
     textTransform: 'capitalize',
-    fontWeight: '450',
+    fontWeight: '700',
   },
-  gridList: {
+  movieListContainer: {
+    width: '100%',
     display: 'flex',
-    flexWrap: 'wrap',
-    margin: '8px auto',
-    alignItems: 'center',
-    justifyContent: 'center',
+    overflowX: 'scroll',
+    cursor: 'pointer',
   },
-  gridContainer: {
-    width: '160px',
-    margin: theme.spacing(),
+  movie: {
+    width: '150px',
+    display: 'inline-flex',
+    flexDirection: 'column',
+    justifyContent: 'space-',
+    margin: theme.spacing(0.5),
+  },
+  movieTitle: {
+    fontWeight: '600',
+    color: theme.palette.common.black,
   },
 }))
 
@@ -49,43 +56,49 @@ function Content(props) {
 
   return (
     <div className={classes.root}>
-      <Typography className={classes.heading} variant='h5'>
-        {props.title}
-      </Typography>
-      <div className={classes.gridList}>
+      <div className={classes.heading}>
+        <Typography variant='h5'>{props.title}</Typography>
+      </div>
+      <div className={classes.movieListContainer}>
         {movies.map((movie) => (
-          <Paper className={classes.gridContainer} key={movie.id}>
-            <Grid container warp='nowrap'>
-              <Grid item>
-                <img
-                  src={posterPath + movie.poster_path}
-                  alt={
-                    movie.title ||
-                    movie.original_title ||
-                    movie.original_name ||
-                    movie.name
-                  }
-                  width='160px'
-                />
-              </Grid>
-              <Grid
-                item
-                xs
-                style={{
-                  padding: '1px, 8px',
-                }}
+          <Paper className={classes.movie} elevation='3'>
+            <img
+              src={posterPath + movie.poster_path}
+              alt={
+                movie.title ||
+                movie.original_title ||
+                movie.name ||
+                movie.original_name
+              }
+              title={
+                movie.title ||
+                movie.original_title ||
+                movie.name ||
+                movie.original_name
+              }
+              width='150px'
+              height='200px'
+            />
+            <div
+              style={{
+                padding: '8px',
+                textAlign: 'center',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              <Typography
+                className={classes.movieTitle}
+                variant='body1'
+                component='span'
               >
-                <Typography
-                  noWrap
-                  style={{ fontWeight: '600', textAlign: 'center' }}
-                >
-                  {movie.title ||
-                    movie.original_title ||
-                    movie.original_name ||
-                    movie.name}
-                </Typography>
-              </Grid>
-            </Grid>
+                {movie.title ||
+                  movie.original_title ||
+                  movie.name ||
+                  movie.original_name}
+              </Typography>
+            </div>
           </Paper>
         ))}
       </div>
