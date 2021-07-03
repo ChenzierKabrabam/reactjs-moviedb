@@ -8,6 +8,7 @@ import {
   fade,
 } from '@material-ui/core'
 import * as FiIcons from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   logoButton: {
     color: fade(theme.palette.common.white, 0.8),
     textTransform: 'capitalize',
+    // textDecoration: 'none',
   },
   search: {
     width: '50%',
@@ -58,12 +60,14 @@ function Header() {
       <AppBar className={classes.root} position='static'>
         <Toolbar>
           <div className={classes.contentAlignment}>
-            <Button
-              startIcon={<FiIcons.FiActivity />}
-              className={classes.logoButton}
-            >
-              <Typography variant='h5'>Clone</Typography>
-            </Button>
+            <Link to='/' style={{ textDecoration: 'none' }}>
+              <Button
+                startIcon={<FiIcons.FiActivity />}
+                className={classes.logoButton}
+              >
+                <Typography variant='h5'>Clone</Typography>
+              </Button>
+            </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <FiIcons.FiSearch />

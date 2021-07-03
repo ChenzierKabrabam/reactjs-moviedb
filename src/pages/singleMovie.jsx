@@ -1,6 +1,8 @@
 import { makeStyles, Paper, Typography, fade } from '@material-ui/core'
 import React from 'react'
-import Header from '../component/Header'
+import { useParams } from 'react-router-dom'
+// import Header from '../component/Header'
+import { API_KEY } from '../api/request'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,9 +73,15 @@ const useStyles = makeStyles((theme) => ({
 
 function SingleMovie() {
   const classes = useStyles()
+  const { id } = useParams()
+  console.log(id)
+  const [movieDetails, setMovieDetails] = React.useState({})
+  let posterPath = 'https://image.tmdb.org/t/p/w500/'
+  // const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+  // console.log(url)
+
   return (
     <React.Fragment>
-      <Header />
       <div className={classes.root}>
         <Paper className={classes.moviePoster} />
       </div>

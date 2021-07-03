@@ -6,6 +6,8 @@ import {
 } from '@material-ui/core'
 import Home from './pages/Home'
 import SingleMovie from './pages/singleMovie'
+import { Switch, Route } from 'react-router-dom'
+import Header from './component/Header'
 
 let theme = createMuiTheme({
   palette: {
@@ -32,8 +34,11 @@ theme = responsiveFontSizes(theme)
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Home />
-      {/* <SingleMovie /> */}
+      <Header />
+      <Switch>
+        <Route exact path='/' children={<Home />} />
+        <Route path='/movie/:id' children={<SingleMovie />} />
+      </Switch>
       <CssBaseline />
     </MuiThemeProvider>
   )
