@@ -5,11 +5,12 @@ import {
   CssBaseline,
 } from '@material-ui/core'
 import Home from './pages/Home'
+import SingleMovie from './pages/singleMovie'
 
 let theme = createMuiTheme({
   palette: {
     background: {
-      default: '#263238',
+      default: '#4f5b62',
     },
     primary: {
       light: '#4f5b62', // font - white
@@ -18,9 +19,9 @@ let theme = createMuiTheme({
       contrastText: '#fff',
     },
     secondary: {
-      light: '#ff616f',
-      main: '#ff1744',
-      dark: '#c4001d', // font - white
+      light: '#62727b',
+      main: '#37474f',
+      dark: '#102027', // font - white
       contrastText: '#fff',
     },
   },
@@ -32,6 +33,7 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Home />
+      {/* <SingleMovie /> */}
       <CssBaseline />
     </MuiThemeProvider>
   )

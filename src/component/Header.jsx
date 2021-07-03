@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   logoButton: {
-    color: fade(theme.palette.common.white, 0.7),
+    color: fade(theme.palette.common.white, 0.8),
     textTransform: 'capitalize',
   },
   search: {
