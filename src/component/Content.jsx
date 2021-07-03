@@ -12,22 +12,21 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     width: '100%',
     padding: theme.spacing(1),
-    color: fade(theme.palette.common.white, 0.8),
+    color: fade(theme.palette.common.white, 0.9),
     textTransform: 'capitalize',
-    fontWeight: '700',
+    fontWeight: '900',
   },
   movieListContainer: {
     width: '100%',
     display: 'flex',
     overflowX: 'scroll',
-    cursor: 'pointer',
   },
   movie: {
     width: '150px',
     display: 'inline-flex',
     flexDirection: 'column',
-    justifyContent: 'space-',
     margin: theme.spacing(0.5),
+    cursor: 'pointer',
   },
   movieTitle: {
     fontWeight: '600',
@@ -57,11 +56,11 @@ function Content(props) {
   return (
     <div className={classes.root}>
       <div className={classes.heading}>
-        <Typography variant='h5'>{props.title}</Typography>
+        <Typography variant='h4'>{props.title}</Typography>
       </div>
       <div className={classes.movieListContainer}>
         {movies.map((movie) => (
-          <Paper className={classes.movie} elevation='3'>
+          <Paper className={classes.movie} elevation={3} key={movie.id}>
             <img
               src={posterPath + movie.poster_path}
               alt={
