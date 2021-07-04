@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '16px auto',
     padding: theme.spacing(1, 1.6, 1, 1),
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.secondary.main,
   },
   heading: {
     width: '100%',
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 function Content(props) {
   const classes = useStyles()
   const [movies, setMovies] = React.useState([])
-  let posterPath = 'https://image.tmdb.org/t/p/w500/'
+  let posterPath = 'https://image.tmdb.org/t/p/w500'
 
   React.useEffect(() => {
     const callAPI = async () => {
@@ -51,8 +51,6 @@ function Content(props) {
     }
     callAPI()
   }, [props.baseURL])
-
-  console.log('list', movies)
 
   return (
     <div className={classes.root}>
