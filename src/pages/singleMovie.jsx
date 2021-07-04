@@ -12,12 +12,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '220px',
     padding: theme.spacing(),
-    backgroundColor: 'green',
   },
   moviePoster: {
     width: '150px',
     height: '200px',
-    backgroundColor: 'grey',
   },
   movieDetails: {
     backgroundColor: theme.palette.secondary.dark,
@@ -25,15 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
   movieTitle: {
     display: 'inline-flex',
-    alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
     padding: theme.spacing(2),
     textAlign: 'center',
   },
   movieLanguage: {
-    // marginleft: '10px',
-    color: fade(theme.palette.common.white, 0.6),
+    fontSize: '24px',
+    color: fade(theme.palette.common.white, 0.7),
   },
   movieRateAndYearWrapper: {
     width: '100%',
@@ -76,40 +73,63 @@ function SingleMovie() {
   const { id } = useParams()
   console.log(id)
   const [movieDetails, setMovieDetails] = React.useState({})
-  let posterPath = 'https://image.tmdb.org/t/p/w500/'
-  // const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
-  // console.log(url)
+  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+  let posterPath = 'https://image.tmdb.org/t/p/w500'
+  console.log(url)
+
+  React.useEffect(() => {
+    const callAPI = async () => {
+      await fetch(url)
+        .then((response) => response.json())
+        .then((result) => setMovieDetails(result))
+    }
+    callAPI()
+  }, [url])
+  console.log('detail', movieDetails)
+  console.log(movieDetails.poster_path)
 
   return (
     <React.Fragment>
-      <div className={classes.root}>
-        <Paper className={classes.moviePoster} />
+      <div
+        className={classes.root}
+        style={{
+          backgroundImage: `url(${posterPath + movieDetails.backdrop_path})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
+      >
+        <Paper className={classes.moviePoster}>
+          <img
+            src={posterPath + movieDetails.poster_path}
+            alt={movieDetails.title}
+            width='150px'
+            height='200px'
+          />
+        </Paper>
       </div>
       <div className={classes.movieDetails}>
         <div className={classes.movieTitle}>
-          <Typography variant='h3' style={{ marginRight: '3px' }}>
-            title
-          </Typography>
-          <Typography className={classes.movieLanguage} variant='h5'>
-            (En)
+          <Typography variant='h4' style={{ marginRight: '3px' }}>
+            {movieDetails.title}
+            <Typography className={classes.movieLanguage} component='span'>
+              ({movieDetails.original_language})
+            </Typography>
           </Typography>
         </div>
         <div className={classes.movieRateAndYearWrapper}>
           <div className={classes.movieYear}>
-            <Typography variant='h5'>Release :</Typography>
-            <Typography variant='body1'>2020</Typography>
+            <Typography variant='h6'>Release :</Typography>
+            <Typography variant='body1'>{movieDetails.release_date}</Typography>
           </div>
           <div className={classes.movieRate}>
-            <Typography variant='h5'>Rating :</Typography>
-            <Typography variant='body1'>7.8</Typography>
+            <Typography variant='h6'>Rating :</Typography>
+            <Typography variant='body1'>{movieDetails.vote_average}</Typography>
           </div>
         </div>
         <div className={classes.movieDescription}>
           <Typography variant='h4'>Overview</Typography>
           <Typography className={classes.movieDescriptionBody} variant='body1'>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti
-            voluptas id iusto eius praesentium mollitia molestias aperiam nam
-            commodi cumque!
+            {movieDetails.overview}
           </Typography>
         </div>
       </div>
