@@ -3,6 +3,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 // import Header from '../component/Header'
 import { API_KEY } from '../api/request'
+import Loading from '../component/Loading'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,6 +74,7 @@ function SingleMovie() {
   const { id } = useParams()
   console.log(id)
   const [movieDetails, setMovieDetails] = React.useState({})
+  const [loading, setLoading] = React.useState(true)
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
   let posterPath = 'https://image.tmdb.org/t/p/w500'
   console.log(url)
@@ -82,6 +84,7 @@ function SingleMovie() {
       await fetch(url)
         .then((response) => response.json())
         .then((result) => setMovieDetails(result))
+      setLoading(false)
     }
     callAPI()
   }, [url])
@@ -90,49 +93,64 @@ function SingleMovie() {
 
   return (
     <React.Fragment>
-      <div
-        className={classes.root}
-        style={{
-          backgroundImage: `url(${posterPath + movieDetails.backdrop_path})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }}
-      >
-        <Paper className={classes.moviePoster}>
-          <img
-            src={posterPath + movieDetails.poster_path}
-            alt={movieDetails.title}
-            width='150px'
-            height='200px'
-          />
-        </Paper>
-      </div>
-      <div className={classes.movieDetails}>
-        <div className={classes.movieTitle}>
-          <Typography variant='h4' style={{ marginRight: '3px' }}>
-            {movieDetails.title}
-            <Typography className={classes.movieLanguage} component='span'>
-              ({movieDetails.original_language})
-            </Typography>
-          </Typography>
-        </div>
-        <div className={classes.movieRateAndYearWrapper}>
-          <div className={classes.movieYear}>
-            <Typography variant='h6'>Release :</Typography>
-            <Typography variant='body1'>{movieDetails.release_date}</Typography>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div
+            className={classes.root}
+            style={{
+              backgroundImage: `url(${
+                posterPath + movieDetails.backdrop_path
+              })`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            }}
+          >
+            <Paper className={classes.moviePoster}>
+              <img
+                src={posterPath + movieDetails.poster_path}
+                alt={movieDetails.title}
+                width='150px'
+                height='200px'
+              />
+            </Paper>
           </div>
-          <div className={classes.movieRate}>
-            <Typography variant='h6'>Rating :</Typography>
-            <Typography variant='body1'>{movieDetails.vote_average}</Typography>
+          <div className={classes.movieDetails}>
+            <div className={classes.movieTitle}>
+              <Typography variant='h4' style={{ marginRight: '3px' }}>
+                {movieDetails.title}
+                <Typography className={classes.movieLanguage} component='span'>
+                  ({movieDetails.original_language})
+                </Typography>
+              </Typography>
+            </div>
+            <div className={classes.movieRateAndYearWrapper}>
+              <div className={classes.movieYear}>
+                <Typography variant='h6'>Release :</Typography>
+                <Typography variant='body1'>
+                  {movieDetails.release_date}
+                </Typography>
+              </div>
+              <div className={classes.movieRate}>
+                <Typography variant='h6'>Rating :</Typography>
+                <Typography variant='body1'>
+                  {movieDetails.vote_average}
+                </Typography>
+              </div>
+            </div>
+            <div className={classes.movieDescription}>
+              <Typography variant='h4'>Overview</Typography>
+              <Typography
+                className={classes.movieDescriptionBody}
+                variant='body1'
+              >
+                {movieDetails.overview}
+              </Typography>
+            </div>
           </div>
-        </div>
-        <div className={classes.movieDescription}>
-          <Typography variant='h4'>Overview</Typography>
-          <Typography className={classes.movieDescriptionBody} variant='body1'>
-            {movieDetails.overview}
-          </Typography>
-        </div>
-      </div>
+        </>
+      )}
     </React.Fragment>
   )
 }

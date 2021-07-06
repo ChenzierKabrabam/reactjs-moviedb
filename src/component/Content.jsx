@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles, fade, Typography, Paper } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import Loading from './Loading'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 function Content(props) {
   const classes = useStyles()
   const [movies, setMovies] = React.useState([])
+  const [loading, setLoading] = React.useState(true)
   let posterPath = 'https://image.tmdb.org/t/p/w500'
 
   React.useEffect(() => {
@@ -48,65 +50,74 @@ function Content(props) {
         .catch((error) => {
           console.log(error)
         })
+      setLoading(false)
     }
     callAPI()
   }, [props.baseURL])
 
   return (
-    <div className={classes.root}>
-      <div className={classes.heading}>
-        <Typography variant='h4'>{props.title}</Typography>
-      </div>
-      <div className={classes.movieListContainer}>
-        {movies.map((movie) => (
-          <Link
-            to={`/movie/${movie.id}`}
-            key={movie.id}
-            style={{ textDecoration: 'none' }}
-          >
-            <Paper className={classes.movie} elevation={3}>
-              <img
-                src={posterPath + movie.poster_path}
-                alt={
-                  movie.title ||
-                  movie.original_title ||
-                  movie.name ||
-                  movie.original_name
-                }
-                title={
-                  movie.title ||
-                  movie.original_title ||
-                  movie.name ||
-                  movie.original_name
-                }
-                width='150px'
-                height='200px'
-              />
-              <div
-                style={{
-                  padding: '8px',
-                  textAlign: 'center',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                <Typography
-                  className={classes.movieTitle}
-                  variant='body1'
-                  component='span'
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className={classes.root}>
+            <div className={classes.heading}>
+              <Typography variant='h4'>{props.title}</Typography>
+            </div>
+            <div className={classes.movieListContainer}>
+              {movies.map((movie) => (
+                <Link
+                  to={`/movie/${movie.id}`}
+                  key={movie.id}
+                  style={{ textDecoration: 'none' }}
                 >
-                  {movie.title ||
-                    movie.original_title ||
-                    movie.name ||
-                    movie.original_name}
-                </Typography>
-              </div>
-            </Paper>
-          </Link>
-        ))}
-      </div>
-    </div>
+                  <Paper className={classes.movie} elevation={3}>
+                    <img
+                      src={posterPath + movie.poster_path}
+                      alt={
+                        movie.title ||
+                        movie.original_title ||
+                        movie.name ||
+                        movie.original_name
+                      }
+                      title={
+                        movie.title ||
+                        movie.original_title ||
+                        movie.name ||
+                        movie.original_name
+                      }
+                      width='150px'
+                      height='200px'
+                    />
+                    <div
+                      style={{
+                        padding: '8px',
+                        textAlign: 'center',
+                        overflow: 'hidden',
+                        whiteSpace: 'nowrap',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      <Typography
+                        className={classes.movieTitle}
+                        variant='body1'
+                        component='span'
+                      >
+                        {movie.title ||
+                          movie.original_title ||
+                          movie.name ||
+                          movie.original_name}
+                      </Typography>
+                    </div>
+                  </Paper>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </>
   )
 }
 
