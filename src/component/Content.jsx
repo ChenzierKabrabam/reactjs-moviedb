@@ -68,7 +68,13 @@ function Content(props) {
             <div className={classes.movieListContainer}>
               {movies.map((movie) => (
                 <Link
-                  to={`/movie/${movie.id}`}
+                  to={
+                    movie.media_type === 'movie'
+                      ? `/movie/${movie.id}`
+                      : movie.media_type === 'tv'
+                      ? `/tv-show/${movie.id}`
+                      : `/movie/${movie.id}`
+                  }
                   key={movie.id}
                   style={{ textDecoration: 'none' }}
                 >

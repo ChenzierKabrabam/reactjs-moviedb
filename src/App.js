@@ -5,7 +5,8 @@ import {
   CssBaseline,
 } from '@material-ui/core'
 import Home from './pages/Home'
-import SingleMovie from './pages/singleMovie'
+import MoviePage from './pages/MoviePage'
+import TvShowPage from './pages/TvShowPage'
 import { Switch, Route } from 'react-router-dom'
 import Header from './component/Header'
 
@@ -37,7 +38,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path='/' children={<Home />} />
-        <Route path='/movie/:id' children={<SingleMovie />} />
+        <Route path='/movie/:id' children={<MoviePage />} />
+        <Route path='/tv-show/:id' children={<TvShowPage />} />
       </Switch>
       <CssBaseline />
     </MuiThemeProvider>
