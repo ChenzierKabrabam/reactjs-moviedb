@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Paper, Typography, fade } from '@material-ui/core'
+import { makeStyles, Paper, Typography, fade, Button } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: theme.palette.primary.main,
+    marginTop: theme.spacing(),
   },
   movieYear: {
     display: 'flex',
@@ -62,6 +63,19 @@ const useStyles = makeStyles((theme) => ({
   movieDescriptionBody: {
     marginTop: '18px',
     lineHeight: '28px',
+  },
+  movieGenreWrapper: {
+    width: '100%',
+    // backgroundColor: 'green',
+    padding: theme.spacing(),
+    marginTop: theme.spacing(2),
+    textAlign: 'center',
+    // color: fade(theme.palette.common.white, 0.7),
+  },
+  movieGenre: {
+    fontSize: '16px',
+    textTransform: 'capitalize',
+    color: fade(theme.palette.common.white, 0.8),
   },
 }))
 
@@ -104,6 +118,13 @@ function MovieDetails(props) {
             <Typography variant='h6'>Rating :</Typography>
             <Typography variant='body1'>{props.rating}</Typography>
           </div>
+        </div>
+        <div className={classes.movieGenreWrapper}>
+          {props.genres.map((genre) => (
+            <Button className={classes.movieGenre} key={genre.id}>
+              {genre.name}
+            </Button>
+          ))}
         </div>
         <div className={classes.movieDescription}>
           <Typography variant='h4'>Overview</Typography>
