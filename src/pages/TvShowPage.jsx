@@ -4,6 +4,7 @@ import { API_KEY } from '../api/request'
 import Loading from '../component/Loading'
 import MovieDetails from '../component/MovieDetails'
 import placeholder from '../assets/image/placeholder.png'
+import ScrollToTopOnMount from '../component/ScrollToTopOnMount'
 
 function TvShowPage() {
   const { id } = useParams()
@@ -24,6 +25,7 @@ function TvShowPage() {
 
   return (
     <React.Fragment>
+      <ScrollToTopOnMount />
       {loading ? (
         <Loading />
       ) : (
@@ -39,6 +41,7 @@ function TvShowPage() {
           overview={movieDetails.overview}
           release={movieDetails.first_air_date}
           rating={movieDetails.vote_average}
+          genres={movieDetails.genres}
         />
       )}
     </React.Fragment>
