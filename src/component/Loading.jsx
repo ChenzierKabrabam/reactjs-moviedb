@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     animationDuration: '1.1s',
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',
-    transition: 'opacity 0.3s',
+    // transition: 'opacity 0.3s',
     borderRadius: '50%',
   },
 }))
