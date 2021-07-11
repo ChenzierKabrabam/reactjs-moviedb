@@ -9,6 +9,7 @@ import MoviePage from './pages/MoviePage'
 import TvShowPage from './pages/TvShowPage'
 import { Switch, Route } from 'react-router-dom'
 import Header from './component/Header'
+import Footer from './component/Footer'
 
 let theme = createMuiTheme({
   palette: {
@@ -41,6 +42,7 @@ function App() {
         <Route path='/movie/:id' children={<MoviePage />} />
         <Route path='/tv-show/:id' children={<TvShowPage />} />
       </Switch>
+      <Footer />
       <CssBaseline />
     </MuiThemeProvider>
   )
