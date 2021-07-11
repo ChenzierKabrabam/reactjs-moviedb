@@ -22,21 +22,19 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     overflowX: 'scroll',
-    [theme.breakpoints.up('md')]: {
-      '&::-webkit-scrollbar': {
-        height: '8px',
-      },
-      '&::-webkit-scrollbar-track': {
-        backgroundColor: theme.palette.secondary.light,
-        borderRadius: theme.shape.borderRadius,
-      },
-      '&::-webkit-scrollbar-thumb': {
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: theme.palette.primary.dark,
-      },
-      '&::-webkit-scrollbar-thumb:hover': {
-        backgroundColor: theme.palette.secondary.dark,
-      },
+    '&::-webkit-scrollbar': {
+      height: '8px',
+    },
+    '&::-webkit-scrollbar-track': {
+      backgroundColor: theme.palette.secondary.light,
+      borderRadius: theme.shape.borderRadius,
+    },
+    '&::-webkit-scrollbar-thumb': {
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: theme.palette.primary.dark,
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      backgroundColor: theme.palette.secondary.dark,
     },
   },
   movie: {
