@@ -1,6 +1,6 @@
 import {
   AppBar,
-  InputBase,
+  // InputBase,
   makeStyles,
   Button,
   Toolbar,
@@ -38,32 +38,32 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '28px',
     },
   },
-  search: {
-    width: '50%',
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    [theme.breakpoints.up('sm')]: {
-      width: '30ch',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 1),
-    height: '100%',
-    position: 'absolute',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    width: '100%',
-    color: 'white',
-    opacity: '62%',
-  },
-  inputField: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
-  },
+  // search: {
+  //   width: '50%',
+  //   position: 'relative',
+  //   borderRadius: theme.shape.borderRadius,
+  //   backgroundColor: fade(theme.palette.common.white, 0.15),
+  //   [theme.breakpoints.up('sm')]: {
+  //     width: '30ch',
+  //   },
+  // },
+  // searchIcon: {
+  //   padding: theme.spacing(0, 1),
+  //   height: '100%',
+  //   position: 'absolute',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+  // inputRoot: {
+  //   width: '100%',
+  //   color: 'white',
+  //   opacity: '62%',
+  // },
+  // inputField: {
+  //   padding: theme.spacing(1, 1, 1, 0),
+  //   paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
+  // },
 }))
 function Header() {
   const classes = useStyles()

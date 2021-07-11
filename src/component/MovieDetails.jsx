@@ -9,29 +9,56 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '220px',
     padding: theme.spacing(2),
+    position: 'relative',
     [theme.breakpoints.up('sm')]: {
       height: '400px',
       padding: theme.spacing(4),
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '100%',
+      height: '600px',
+      // margin: '0 auto',
+    },
+    '&:before': {
+      content: '""',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      right: '0',
+      backgroundColor: fade(theme.palette.common.black, 0.6),
     },
   },
   moviePoster: {
     width: '150px',
     height: '200px',
+    position: 'absolute',
     [theme.breakpoints.up('sm')]: {
       width: '200px',
       height: '280px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '250px',
+      height: '340px',
     },
   },
   movieDetails: {
     backgroundColor: theme.palette.secondary.dark,
     color: 'white',
+    [theme.breakpoints.up('md')]: {
+      // width: '50%',
+    },
   },
   movieTitle: {
     display: 'inline-flex',
     justifyContent: 'center',
     width: '100%',
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     textAlign: 'center',
+    [theme.breakpoints.up('md')]: {
+      right: '25%',
+    },
   },
   movieLanguage: {
     fontSize: '24px',
@@ -43,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     backgroundColor: theme.palette.primary.main,
     marginTop: theme.spacing(),
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(0, 3, 0, 3),
+    },
   },
   movieYear: {
     display: 'flex',
@@ -77,6 +107,9 @@ const useStyles = makeStyles((theme) => ({
   movieDescription: {
     width: '100%',
     padding: theme.spacing(4, 2, 4, 2),
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(10),
+    },
   },
   movieDescriptionTitle: {
     [theme.breakpoints.up('sm')]: {
@@ -130,7 +163,10 @@ function MovieDetails(props) {
       </div>
       <div className={classes.movieDetails}>
         <div className={classes.movieTitle}>
-          <Typography variant='h4' style={{ marginRight: '3px' }}>
+          <Typography
+            variant='h4'
+            style={{ marginRight: '3px', color: 'white' }}
+          >
             {props.title}
             <Typography className={classes.movieLanguage} component='span'>
               ({props.language})

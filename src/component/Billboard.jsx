@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     position: 'relative',
+    [theme.breakpoints.up('md')]: {
+      width: '95%',
+      margin: '16px auto',
+    },
   },
   nextAndPrevButton: {
     position: 'absolute',
@@ -32,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
       height: '400px',
       padding: theme.spacing(5),
     },
+    [theme.breakpoints.up('md')]: {
+      height: '550px',
+      borderRadius: theme.spacing(),
+    },
     '&:before': {
       content: '""',
       display: 'block',
@@ -41,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
       top: '0',
       left: '0',
       backgroundColor: fade(theme.palette.common.black, 0.5),
+      [theme.breakpoints.up('md')]: {
+        borderRadius: theme.spacing(),
+      },
     },
   },
   moviePoster: {
@@ -57,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     padding: theme.spacing(),
     textAlign: 'center',
+    [theme.breakpoints.up('md')]: {
+      textAlign: 'left',
+    },
   },
   movieTitle: {
     fontSize: '18px',
@@ -90,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
 function Billboard(props) {
   const classes = useStyles()
   const [movies, setMovies] = React.useState([])
-  let posterPath = 'https://image.tmdb.org/t/p/w500'
+  let posterPath = 'https://image.tmdb.org/t/p/original'
   const [currentMovie, setCurrentMovie] = React.useState(0)
 
   React.useEffect(() => {
@@ -104,7 +118,7 @@ function Billboard(props) {
     }
     callAPI()
   }, [props.baseURL])
-  console.log(movies)
+  // console.log(movies)
 
   const prevMovie = () => {
     setCurrentMovie(currentMovie === 0 ? movies.length - 1 : currentMovie - 1)

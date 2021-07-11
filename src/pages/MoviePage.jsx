@@ -12,6 +12,7 @@ function MoviePage() {
   const [loading, setLoading] = React.useState(true)
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
   let posterPath = 'https://image.tmdb.org/t/p/w500'
+  let backdropPath = 'https://image.tmdb.org/t/p/original'
 
   React.useEffect(() => {
     const callAPI = async () => {
@@ -33,7 +34,7 @@ function MoviePage() {
           backdropPoster={
             !movieDetails.backdrop_path
               ? placeholder
-              : posterPath + movieDetails.backdrop_path
+              : backdropPath + movieDetails.backdrop_path
           }
           poster={posterPath + movieDetails.poster_path}
           title={movieDetails.title}
