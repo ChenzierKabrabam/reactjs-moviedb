@@ -25,14 +25,36 @@ const useStyles = makeStyles((theme) => ({
   },
   movie: {
     width: '150px',
+    height: '210px',
     display: 'inline-flex',
     flexDirection: 'column',
     margin: theme.spacing(0.5),
     cursor: 'pointer',
+    position: 'relative',
+    [theme.breakpoints.up('sm')]: {
+      width: '200px',
+      height: '280px',
+    },
   },
   movieTitle: {
     fontWeight: '600',
-    color: theme.palette.common.black,
+    color: fade(theme.palette.common.white, 0.9),
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '20px',
+    },
+  },
+  movieTitleContainer: {
+    width: '100%',
+    bottom: '0',
+    padding: '8px',
+    textAlign: 'center',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    backgroundColor: fade(theme.palette.common.black, 0.6),
+    position: 'absolute',
+    borderBottomLeftRadius: theme.shape.borderRadius,
+    borderBottomRightRadius: theme.shape.borderRadius,
   },
 }))
 
@@ -78,8 +100,16 @@ function Content(props) {
                   key={movie.id}
                   style={{ textDecoration: 'none' }}
                 >
-                  <Paper className={classes.movie} elevation={3}>
-                    <img
+                  <Paper
+                    className={classes.movie}
+                    elevation={3}
+                    style={{
+                      backgroundImage: `url(${posterPath + movie.poster_path})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '100% 100%',
+                    }}
+                  >
+                    {/* <img
                       src={posterPath + movie.poster_path}
                       alt={
                         movie.title ||
@@ -95,15 +125,20 @@ function Content(props) {
                       }
                       width='150px'
                       height='200px'
-                    />
+                    /> */}
                     <div
-                      style={{
-                        padding: '8px',
-                        textAlign: 'center',
-                        overflow: 'hidden',
-                        whiteSpace: 'nowrap',
-                        textOverflow: 'ellipsis',
-                      }}
+                      className={classes.movieTitleContainer}
+                      // style={{
+                      //   width: '100%',
+                      //   bottom: '0',
+                      //   padding: '8px',
+                      //   textAlign: 'center',
+                      //   overflow: 'hidden',
+                      //   whiteSpace: 'nowrap',
+                      //   textOverflow: 'ellipsis',
+                      //   backgroundColor: 'green',
+                      //   position: 'absolute',
+                      // }}
                     >
                       <Typography
                         className={classes.movieTitle}

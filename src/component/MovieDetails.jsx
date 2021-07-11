@@ -8,11 +8,19 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     width: '100%',
     height: '220px',
-    padding: theme.spacing(),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      height: '400px',
+      padding: theme.spacing(4),
+    },
   },
   moviePoster: {
     width: '150px',
     height: '200px',
+    [theme.breakpoints.up('sm')]: {
+      width: '200px',
+      height: '280px',
+    },
   },
   movieDetails: {
     backgroundColor: theme.palette.secondary.dark,
@@ -46,6 +54,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     borderRight: '0.4px solid grey',
   },
+  movieYearAndRateFont: {
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '28px',
+    },
+  },
+  movieYearAndRateValueFont: {
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '24px',
+    },
+  },
   movieRate: {
     display: 'flex',
     flexDirection: 'row',
@@ -60,22 +78,32 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: theme.spacing(4, 2, 4, 2),
   },
+  movieDescriptionTitle: {
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '34px',
+    },
+  },
   movieDescriptionBody: {
     marginTop: '18px',
     lineHeight: '28px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '24px',
+      lineHeight: '34px',
+    },
   },
   movieGenreWrapper: {
     width: '100%',
-    // backgroundColor: 'green',
     padding: theme.spacing(),
     marginTop: theme.spacing(2),
     textAlign: 'center',
-    // color: fade(theme.palette.common.white, 0.7),
   },
   movieGenre: {
     fontSize: '16px',
     textTransform: 'capitalize',
     color: fade(theme.palette.common.white, 0.8),
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '24px',
+    },
   },
 }))
 
@@ -88,17 +116,17 @@ function MovieDetails(props) {
         style={{
           backgroundImage: `url(${props.backdropPoster})`,
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
+          backgroundSize: '100% 100%',
         }}
       >
-        <Paper className={classes.moviePoster}>
-          <img
-            src={props.poster}
-            alt={props.title}
-            width='150px'
-            height='200px'
-          />
-        </Paper>
+        <Paper
+          className={classes.moviePoster}
+          style={{
+            backgroundImage: `url(${props.poster})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '100% 100%',
+          }}
+        />
       </div>
       <div className={classes.movieDetails}>
         <div className={classes.movieTitle}>
@@ -111,12 +139,26 @@ function MovieDetails(props) {
         </div>
         <div className={classes.movieRateAndYearWrapper}>
           <div className={classes.movieYear}>
-            <Typography variant='h6'>Release :</Typography>
-            <Typography variant='body1'>{props.release}</Typography>
+            <Typography className={classes.movieYearAndRateFont} variant='h6'>
+              Release :
+            </Typography>
+            <Typography
+              className={classes.movieYearAndRateValueFont}
+              variant='body1'
+            >
+              {props.release}
+            </Typography>
           </div>
           <div className={classes.movieRate}>
-            <Typography variant='h6'>Rating :</Typography>
-            <Typography variant='body1'>{props.rating}</Typography>
+            <Typography className={classes.movieYearAndRateFont} variant='h6'>
+              Rating :
+            </Typography>
+            <Typography
+              className={classes.movieYearAndRateValueFont}
+              variant='body1'
+            >
+              {props.rating}
+            </Typography>
           </div>
         </div>
         <div className={classes.movieGenreWrapper}>
@@ -127,7 +169,9 @@ function MovieDetails(props) {
           ))}
         </div>
         <div className={classes.movieDescription}>
-          <Typography variant='h4'>Overview</Typography>
+          <Typography className={classes.movieDescriptionTitle} variant='h4'>
+            Overview
+          </Typography>
           <Typography className={classes.movieDescriptionBody} variant='body1'>
             {props.overview}
           </Typography>
