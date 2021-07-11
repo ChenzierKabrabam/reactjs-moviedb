@@ -28,8 +28,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '250px',
     padding: theme.spacing(2),
-    // opacity: '0',
-    // transitionDuration: '6s ease',
+    [theme.breakpoints.up('sm')]: {
+      height: '400px',
+      padding: theme.spacing(5),
+    },
     '&:before': {
       content: '""',
       display: 'block',
@@ -42,21 +44,26 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   moviePoster: {
-    width: '110px',
-    height: '147px',
+    width: '150px',
+    height: '190px',
     position: 'relative',
+    [theme.breakpoints.up('sm')]: {
+      width: '200px',
+      height: '280px',
+    },
   },
   movieDetailsContainer: {
     width: '70%',
-    height: '50px',
     position: 'relative',
-    // backgroundColor: 'green',
     padding: theme.spacing(),
     textAlign: 'center',
   },
   movieTitle: {
-    fontSize: '28px',
+    fontSize: '18px',
     color: fade(theme.palette.common.white, 0.9),
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '32px',
+    },
   },
   movieAnimation: {
     display: 'flex',
@@ -160,7 +167,7 @@ function Billboard(props) {
                         posterPath + movie.backdrop_path
                       })`,
                       backgroundRepeat: 'no-repeat',
-                      backgroundSize: 'cover',
+                      backgroundSize: '100% 100%',
                     }}
                   >
                     <Paper
@@ -170,12 +177,13 @@ function Billboard(props) {
                           posterPath + movie.poster_path
                         })`,
                         backgroundRepeat: 'no-repeat',
-                        backgroundSize: '100% 146px',
+                        backgroundSize: '100% 100%',
                       }}
+                      elevation={3}
                     />
                     <div className={classes.movieDetailsContainer}>
-                      <div className={classes.movieTitle}>
-                        <Typography variant='h6'>
+                      <div>
+                        <Typography className={classes.movieTitle} variant='h6'>
                           {movie.title || movie.name}
                         </Typography>
                       </div>

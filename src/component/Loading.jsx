@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     height: '100vh',
-    backgroundColor: 'transparent',
+    backgroundColor: theme.palette.secondary.dark,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     border: `4px solid ${theme.palette.secondary.main}`,
     borderTop: `4px solid ${theme.palette.secondary.dark}`,
     animationName: '$loading',
-    animationDuration: '1.1s',
+    animationDuration: '2.5s',
     animationTimingFunction: 'linear',
     animationIterationCount: 'infinite',
     // transition: 'opacity 0.3s',

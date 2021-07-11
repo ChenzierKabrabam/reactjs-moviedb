@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.primary.dark,
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1),
+      height: '80px',
+    },
   },
   contentAlignment: {
     display: 'flex',
@@ -25,6 +29,14 @@ const useStyles = makeStyles((theme) => ({
     color: fade(theme.palette.common.white, 0.8),
     textTransform: 'capitalize',
     // textDecoration: 'none',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '28px',
+    },
+  },
+  headerTitle: {
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '28px',
+    },
   },
   search: {
     width: '50%',
@@ -65,10 +77,12 @@ function Header() {
                 startIcon={<FiIcons.FiActivity />}
                 className={classes.logoButton}
               >
-                <Typography variant='h5'>Clone</Typography>
+                <Typography className={classes.headerTitle} variant='h5'>
+                  Clone
+                </Typography>
               </Button>
             </Link>
-            <div className={classes.search}>
+            {/* <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <FiIcons.FiSearch />
               </div>
@@ -76,7 +90,7 @@ function Header() {
                 placeholder='Search...'
                 classes={{ root: classes.inputRoot, input: classes.inputField }}
               />
-            </div>
+            </div> */}
           </div>
         </Toolbar>
       </AppBar>
