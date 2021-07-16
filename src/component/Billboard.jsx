@@ -127,9 +127,9 @@ function Billboard(props) {
     setCurrentMovie(currentMovie === movies.length - 1 ? 0 : currentMovie + 1)
   }
 
-  if (!Array.isArray(movies) || movies.length <= 0) {
-    return null
-  }
+  // if (!Array.isArray(movies) || movies.length <= 0) {
+  //   return null
+  // }
 
   return (
     <div className={classes.root}>

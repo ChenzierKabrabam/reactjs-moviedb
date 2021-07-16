@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles, Paper, Typography, fade, Button } from '@material-ui/core'
+import MovieCredit from './MovieCredit'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   movieDetails: {
     backgroundColor: theme.palette.secondary.dark,
     color: 'white',
+    padding: theme.spacing(),
     [theme.breakpoints.up('md')]: {
       // width: '50%',
     },
@@ -138,6 +140,14 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '24px',
     },
   },
+  castWrapper: {
+    width: '100%',
+    borderRadius: theme.shape.borderRadius,
+    padding: theme.spacing(2),
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(10),
+    },
+  },
 }))
 
 function MovieDetails(props) {
@@ -211,6 +221,9 @@ function MovieDetails(props) {
           <Typography className={classes.movieDescriptionBody} variant='body1'>
             {props.overview}
           </Typography>
+        </div>
+        <div className={classes.castWrapper}>
+          <MovieCredit id={props.id} credits={props.credits} />
         </div>
       </div>
     </React.Fragment>
