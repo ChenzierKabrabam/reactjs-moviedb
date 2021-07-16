@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     color: fade(theme.palette.common.white, 0.9),
     textTransform: 'capitalize',
-    fontWeight: '900',
+    // fontWeight: '900',
   },
   movieListContainer: {
     width: '100%',
@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   movie: {
-    width: '150px',
-    height: '210px',
+    width: '130px',
+    height: '185px',
     display: 'inline-flex',
     flexDirection: 'column',
     margin: theme.spacing(0.5),
@@ -123,37 +123,7 @@ function Content(props) {
                       backgroundSize: '100% 100%',
                     }}
                   >
-                    {/* <img
-                      src={posterPath + movie.poster_path}
-                      alt={
-                        movie.title ||
-                        movie.original_title ||
-                        movie.name ||
-                        movie.original_name
-                      }
-                      title={
-                        movie.title ||
-                        movie.original_title ||
-                        movie.name ||
-                        movie.original_name
-                      }
-                      width='150px'
-                      height='200px'
-                    /> */}
-                    <div
-                      className={classes.movieTitleContainer}
-                      // style={{
-                      //   width: '100%',
-                      //   bottom: '0',
-                      //   padding: '8px',
-                      //   textAlign: 'center',
-                      //   overflow: 'hidden',
-                      //   whiteSpace: 'nowrap',
-                      //   textOverflow: 'ellipsis',
-                      //   backgroundColor: 'green',
-                      //   position: 'absolute',
-                      // }}
-                    >
+                    <div className={classes.movieTitleContainer}>
                       <Typography
                         className={classes.movieTitle}
                         variant='body1'

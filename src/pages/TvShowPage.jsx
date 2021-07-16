@@ -11,6 +11,7 @@ function TvShowPage() {
   const [movieDetails, setMovieDetails] = React.useState({})
   const [loading, setLoading] = React.useState(true)
   const tvShowURL = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US`
+  const tvShowCredits = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_KEY}&language=en-US`
   let posterPath = 'https://image.tmdb.org/t/p/w500'
 
   React.useEffect(() => {
@@ -22,6 +23,8 @@ function TvShowPage() {
     }
     callAPI()
   }, [tvShowURL])
+
+  // console.log(movieDetails)
 
   return (
     <React.Fragment>
@@ -35,6 +38,7 @@ function TvShowPage() {
               ? placeholder
               : posterPath + movieDetails.backdrop_path
           }
+          credits={tvShowCredits}
           poster={posterPath + movieDetails.poster_path}
           title={movieDetails.name}
           language={movieDetails.original_language}
@@ -42,6 +46,7 @@ function TvShowPage() {
           release={movieDetails.first_air_date}
           rating={movieDetails.vote_average}
           genres={movieDetails.genres}
+          id={movieDetails.id}
         />
       )}
     </React.Fragment>
