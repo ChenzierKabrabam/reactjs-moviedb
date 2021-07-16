@@ -24,7 +24,7 @@ function TvShowPage() {
     callAPI()
   }, [tvShowURL])
 
-  console.log(movieDetails)
+  // console.log(movieDetails)
 
   return (
     <React.Fragment>
