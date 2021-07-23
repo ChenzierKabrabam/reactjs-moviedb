@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '40%',
     color: fade(theme.palette.common.white, 1),
-    zIndex: '10',
+    zIndex: '12',
   },
   movieContainer: {
     display: 'flex',
@@ -30,14 +30,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     position: 'relative',
     width: '100%',
-    height: '250px',
+    height: '270px',
     padding: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      height: '400px',
+      height: '440px',
       padding: theme.spacing(5),
     },
     [theme.breakpoints.up('md')]: {
-      height: '550px',
+      height: '620px',
       borderRadius: theme.spacing(),
     },
     '&:before': {
@@ -61,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: '200px',
       height: '280px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '300px',
+      height: '380px',
     },
   },
   movieDetailsContainer: {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles, Paper, Typography, fade, Button } from '@material-ui/core'
 import MovieCredit from './MovieCredit'
-
+import Footer from './Footer'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('md')]: {
       width: '100%',
-      height: '600px',
+      height: '650px',
+      padding: theme.spacing(8),
       // margin: '0 auto',
     },
     '&:before': {
@@ -40,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
       height: '280px',
     },
     [theme.breakpoints.up('md')]: {
-      width: '250px',
-      height: '340px',
+      width: '300px',
+      height: '385px',
     },
   },
   movieDetails: {
@@ -226,6 +227,7 @@ function MovieDetails(props) {
           <MovieCredit id={props.id} credits={props.credits} />
         </div>
       </div>
+      <Footer />
     </React.Fragment>
   )
 }

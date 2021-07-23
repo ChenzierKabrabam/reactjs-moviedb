@@ -1,5 +1,6 @@
 import { makeStyles, Paper, Typography } from '@material-ui/core'
 import React from 'react'
+import avatar from '../assets/image/avatar.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,11 @@ function MovieDirector(props) {
             <Paper
               className={props.movieCast}
               style={{
-                backgroundImage: `url(${posterPath + crew.profile_path})`,
+                backgroundImage: `url(${
+                  crew.profile_path === null
+                    ? avatar
+                    : posterPath + crew.profile_path
+                })`,
               }}
             />
             <div className={props.nameWrapper}>

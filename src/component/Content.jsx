@@ -82,11 +82,13 @@ function Content(props) {
     const callAPI = async () => {
       await fetch(props.baseURL)
         .then((response) => response.json())
-        .then((result) => setMovies(result.results))
+        .then((result) => {
+          setMovies(result.results)
+          setLoading(false)
+        })
         .catch((error) => {
           console.log(error)
         })
-      setLoading(false)
     }
     callAPI()
   }, [props.baseURL])

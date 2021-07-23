@@ -18,8 +18,10 @@ function TvShowPage() {
     const callAPI = async () => {
       await fetch(tvShowURL)
         .then((response) => response.json())
-        .then((result) => setMovieDetails(result))
-      setLoading(false)
+        .then((result) => {
+          setMovieDetails(result)
+          setLoading(false)
+        })
     }
     callAPI()
   }, [tvShowURL])
