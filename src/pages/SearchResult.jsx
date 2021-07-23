@@ -117,7 +117,7 @@ function SearchResult() {
       })
   }
 
-  console.log(movies)
+  // console.log(movies)
 
   return (
     <React.Fragment>
