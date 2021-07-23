@@ -9,7 +9,7 @@ import MoviePage from './pages/MoviePage'
 import TvShowPage from './pages/TvShowPage'
 import { Switch, Route } from 'react-router-dom'
 import Header from './component/Header'
-import Footer from './component/Footer'
+import SearchResult from './pages/SearchResult'
 
 let theme = createMuiTheme({
   palette: {
@@ -41,11 +41,13 @@ function App() {
         <Route exact path='/' children={<Home />} />
         <Route path='/movie/:id' children={<MoviePage />} />
         <Route path='/tv-show/:id' children={<TvShowPage />} />
+        <Route path='/search' children={<SearchResult />} />
       </Switch>
-      <Footer />
       <CssBaseline />
     </MuiThemeProvider>
   )
 }
 
 export default App
+
+// avatar: Image by <a href="https://pixabay.com/users/wingtilldie-3058071/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1577909">WingTillDie</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1577909">Pixabay</a>

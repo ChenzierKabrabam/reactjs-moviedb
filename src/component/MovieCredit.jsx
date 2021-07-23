@@ -1,6 +1,6 @@
 import { makeStyles, Typography, Paper, fade } from '@material-ui/core'
 import React from 'react'
-import placeholder from '../assets/image/placeholder.png'
+import avatar from '../assets/image/avatar.png'
 import MovieDirector from './MovieDirector'
 
 const useStyles = makeStyles((theme) => ({
@@ -122,7 +122,7 @@ function MovieCredit({ id, credits }) {
               style={{
                 backgroundImage: `url(${
                   cast.profile_path === null
-                    ? placeholder
+                    ? avatar
                     : posterPath + cast.profile_path
                 })`,
                 backgroundRepeat: 'no-repeat',

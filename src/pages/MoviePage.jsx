@@ -22,11 +22,11 @@ function MoviePage() {
         .then((response) => response.json())
         .then((result) => {
           setMovieDetails(result)
+          setLoading(false)
         })
         .catch((e) => {
           console.log(e)
         })
-      setLoading(false)
     }
     callAPI()
   }, [url])

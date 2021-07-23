@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     backgroundColor: theme.palette.primary.dark,
     [theme.breakpoints.up('sm')]: {
-      height: '200px',
+      height: '150px',
     },
     [theme.breakpoints.up('md')]: {
-      height: '300px',
+      height: '200px',
     },
   },
   icons: {
